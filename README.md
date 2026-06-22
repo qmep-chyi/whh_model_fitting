@@ -1,21 +1,22 @@
 # WHH model fitting
 
 (Dirty limit, single-band) Using Kim et al.(2025)'s equation on page 6 with a correction.[1]  
-Nowadays, I fit the WHH model to the data taken by [MJ(graduate student)](https://sites.google.com/gs.cwnu.ac.kr/qmep/members/members?authuser=0#h.c06n2cg4biui) at [QMEP Lab, ChangWon National University, Korea](https://sites.google.com/gs.cwnu.ac.kr/qmep).  
+I fit the WHH model to the data taken by [MJ(graduate student)](https://sites.google.com/gs.cwnu.ac.kr/qmep/members/members?authuser=0#h.c06n2cg4biui) at [QMEP Lab, ChangWon National University, Korea](https://sites.google.com/gs.cwnu.ac.kr/qmep).  
 
 * [whh_model.ipynb](whh_model.ipynb)
     * Description of the 'polygamma closed form'
     * Preview the curves
-    * Example fitting on Kim et al. 2025.
+    * Example fit to Kim et al. (2025) data
 * [series_consistency.ipynb](series_consistency.ipynb)
     * Comparison with `mpmath.nsum`
+    * `mpmath.nsum` with `method='r+s+e'` was accurate but too slow.
 * [whh.py](whh.py)
-    * implemented `WHHmodel` class for fitting and curve plotting.
+    * Implemented `WHHModel` class for fitting and curve plotting.
 
-## Fit to the Kim 2025 data
-Data points digitized from Figure S9 and Table S1 of Kim et al. (2025), Ref. [1]
+## Fit
+Data points digitized from Figure S9 and Table S1 of Kim et al. (2025), Ref. [1]  
+
 <img src="kim2025_fit.png" alt="Kim et al. (2025) fit" width="600">
-
   
 ## Equation
   
@@ -25,16 +26,16 @@ $$\ln\frac{1}{t}=\sum^\infty_{\nu=-\infty}\{\frac{1}{|2\nu+1|}-[|2\nu+1|+\frac{\
 * $t=T/T_c$
 
 ### Polygamma closed form
-used for the summation of the series $\sum_{\nu=-\infty}^\infty\{...\}$.  
+Used for the summation of the series $\sum_{\nu=-\infty}^\infty\{...\}$.  
 
 $$\textrm{RHS} = \left(\frac{1}{2}+\frac{\lambda_{SO}}{4tq}\right)\Psi\left(\frac{1-q}{2}+\frac{\bar{h}+\lambda_{SO}/2}{2t}\right)+\left(\frac{1}{2}-\frac{\lambda_{SO}}{4tq}\right)\Psi\left(\frac{1+q}{2}+\frac{\bar{h}+\lambda_{SO}/2}{2t}\right)-\Psi(\frac{1}{2})$$
 
 where $q = \frac{\sqrt{\lambda_{SO}^2/4-\left(\alpha \bar{h}\right)^2}}{t}$.  
 On the seam($\lambda_{SO} \sim 2\alpha \bar{h}$):  
 
-$$\textrm{RHS on seam} = \Psi\left(\frac{1}{2}+\frac{h+v/2}{2t}\right)-\Psi\left(\frac{1}{2}\right)-\frac{v}{4t}\Psi^{(1)}\left(\frac{1}{2}+\frac{h+v/2}{2t}\right)$$
-
-
+$$\textrm{RHS on seam} = \Psi\left(\frac{1}{2}+\frac{\bar{h}+\lambda_{SO}/2}{2t}\right)-\Psi\left(\frac{1}{2}\right)-\frac{\lambda_{SO}}{4t}\Psi^{(1)}\left(\frac{1}{2}+\frac{\bar{h}+\lambda_{SO}/2}{2t}\right)$$
+  
+where 
 
 ## References
 [1]. Kim, S. et al. Spin-orbit coupling induced enhancement of upper critical field in superconducting A15 single crystals. Journal of Alloys and Compounds 1037, 182350 (2025).  

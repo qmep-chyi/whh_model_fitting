@@ -205,8 +205,3 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
-
-## my
-# qmep_data_fit.ipynb
-# qmep_flatten.csv
-*.png
