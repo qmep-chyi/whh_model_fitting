@@ -21,8 +21,9 @@ Data points digitized from Figure S9 and Table S1 of Kim et al. (2025), Ref. [1]
   
 ## Equation
   
-$$\ln\frac{1}{t}=\sum^\infty_{\nu=-\infty}\left\{\frac{1}{|2\nu+1|}-\left[|2\nu+1|+\frac{\bar{h}}{t}+\frac{(\frac{\alpha \bar{h}}{t})^2}{|2\nu+1|+\frac{\bar{h}+\lambda_{SO}}{t}}\right]^{-1}\right\}$$
-  
+
+$$\ln\frac{1}{t}=\sum^\infty_{\nu=-\infty}\left(\frac{1}{|2\nu+1|}-\left[|2\nu+1|+\frac{\bar{h}}{t}+\frac{(\frac{\alpha\bar{h}}{t})^2}{|2\nu+1|+\frac{\bar{h}+\lambda_{SO}}{t}}\right]^{-1}\right)$$
+
 * where $\bar{h} = (4/\pi^2)[H_{c2}/(T_c\cdot|dH_{c2}(T)/dT|_{T_c})]$  
 * $t=T/T_c$
 
