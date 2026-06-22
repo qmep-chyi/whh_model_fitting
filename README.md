@@ -1,4 +1,5 @@
 # WHH model fitting
+> English and some codes revised by Claude Opus 4.8 (2026).  
 
 (Dirty limit, single-band) Using Kim et al.(2025)'s equation on page 6 with a correction.[1]  
 I fit the WHH model to the data taken by [MJ(graduate student)](https://sites.google.com/gs.cwnu.ac.kr/qmep/members/members?authuser=0#h.c06n2cg4biui) at [QMEP Lab, ChangWon National University, Korea](https://sites.google.com/gs.cwnu.ac.kr/qmep).  
