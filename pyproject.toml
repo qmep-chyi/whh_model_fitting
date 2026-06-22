@@ -12,7 +12,6 @@ dependencies = [
     "nbformat>=5.10.4",
     "numpy>=2.4.6",
     "pandas>=3.0.3",
-    "plotly>=6.7.0",
     "scikit-learn>=1.8.0",
     "scipy>=1.17.1",
 ]
