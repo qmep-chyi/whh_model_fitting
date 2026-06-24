@@ -2,13 +2,22 @@
 > English and some code revised/refactored by Claude Opus 4.8 (2026).  
 
 ***Dirty Limit Only***  
-To fit the WHH model[1] to the data taken at [QMEP Lab, ChangWon National University, Korea](https://sites.google.com/gs.cwnu.ac.kr/qmep), I implemented and tested it on Kim et al.'s. data.  
+To fit the WHH model[1] to the data taken at [QMEP Lab, ChangWon National University, Korea](https://sites.google.com/gs.cwnu.ac.kr/qmep), I implemented the `WHHModel` and tested it on Kim et al.'s data using `scipy.optimize.least_squares`. For the RHS, `mpmath.nsum` and `polygamma closed form` are compared. Both methods were consistent with residual less than 1e-12 and `polygamma form` was about $200\times$ faster.   
    
 ***Figure from [whh_model.ipynb](whh_model.ipynb)***  
 Data points digitized from Figure S9 and Table S1 of Kim et al. (2025) [2]  
 
 
-<img src="kim2025_fit.png" alt="Kim et al. (2025) fit" width="600">
+<img src="kim2025_fit.png" alt="Kim et al. (2025) fit" width="800">
+
+Note that `TS4` terminated on the *ftol* condition with its Maki parameter $\alpha$ pinned at the upper bound, because the R2 surface over the $(\alpha, \lambda_{SO})$ plane has a broad valley with only a small drop in R2.  
+
+***R2 score heatmap***
+* Colorscale minimum: 0.90. 
+* BS: parameter pair with best R2 score.
+
+<img src="wide_valley.png" alt="valley of the parameter space" width="800">
+
 
 ## Equation
 The WHH model describes $H_{c2}-T$ relation of conventional, type-II superconductors.  
@@ -27,6 +36,7 @@ where $q = \frac{\sqrt{\lambda_{SO}^2/4-\left(\alpha \bar{h}\right)^2}}{t}$.
 On the seam ($\lambda_{SO} \sim 2\alpha \bar{h}$):  
 
 $$\textrm{RHS on seam} = \Psi\left(\frac{1}{2}+\frac{\bar{h}+\lambda_{SO}/2}{2t}\right)-\Psi\left(\frac{1}{2}\right)-\frac{\lambda_{SO}}{4t}\Psi^{(1)}\left(\frac{1}{2}+\frac{\bar{h}+\lambda_{SO}/2}{2t}\right)$$
+
 
 ## Module and notebooks
 * [whh_model.ipynb](whh_model.ipynb)
