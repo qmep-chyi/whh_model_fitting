@@ -20,7 +20,7 @@ Note that `TS4` terminated on the *ftol* condition with its Maki parameter $\alp
 
 
 ## Equation
-The WHH model describes $H_{c2}-T$ relation of conventional, type-II superconductors.  
+The WHH model describes the $H_{c2}$ versus $T$ relation of conventional, type-II superconductors.  
 Using Kim et al. (2025)'s equation on page 6 with a correction.[2]  
 
 $$\ln\frac{1}{t}=\sum^\infty_{\nu=-\infty}\left(\frac{1}{|2\nu+1|}-\left[|2\nu+1|+\frac{\bar{h}}{t}+\frac{(\frac{\alpha\bar{h}}{t})^2}{|2\nu+1|+\frac{\bar{h}+\lambda_{SO}}{t}}\right]^{-1}\right)$$
@@ -67,7 +67,7 @@ m = WHHModel(slope=slope, t_c=t_c, alpha=alpha, l_so=l_so)
 m_orbital = WHHModel(slope=slope, t_c=t_c, alpha=0, l_so=0) # orbital limit at zero T
 m_l0 = WHHModel(slope=slope, t_c=t_c, alpha=alpha, l_so=0) # without spin-orbit scattering
 # model using `mpmath.nsum` (method='r+s+e')
-# m_nsum = WHHModel(slope=slope, t_c=t_c, alpha=alpha, l_so=l_so, summation='mpmath_nsum')
+m_nsum = WHHModel(slope=slope, t_c=t_c, alpha=alpha, l_so=l_so, summation='mpmath_nsum')
 
 # temperature from 0.01Tc to 0.99Tc.
 n=99
@@ -77,12 +77,12 @@ t_grid = np.linspace(0.01, 0.99, n)
 _, h = m.curve(t_grid, return_reduced=False)
 _, h_orb = m_orbital.curve(t_grid, return_reduced=False)
 _, h_l0 = m_l0.curve(t_grid, return_reduced=False)
-# (mpmath:nsum) _, h_nsum = m_nsum.curve(t_grid, return_reduced=False) # >100 times slower
+_, h_nsum = m_nsum.curve(t_grid, return_reduced=False) # mpmath:nsum, >100 times slower
 
 plt.plot(t_grid*t_c, h, label=f"α:{alpha}, l_so:{l_so}")
 plt.plot(t_grid*t_c, h_orb, 'c--', label="orbital limit", linewidth=3, alpha=0.3)
 plt.plot(t_grid*t_c, h_l0, 'm--', label="Maki parameter only", linewidth=3, alpha=0.3)
-# (mpmath:nsum) plt.plot(t_grid*t_c, h_nsum, 'g--', label="mpmath_nsum", linewidth=3, alpha=0.3)
+plt.plot(t_grid*t_c, h_nsum, 'g--', label="mpmath_nsum", linewidth=3, alpha=0.3) # (mpmath:nsum)
 plt.legend()
 plt.show()
 ```
@@ -140,7 +140,7 @@ pg_df
 |TS3|0.582207|2.523624e-15|0.000894|2|4.94|-1.4|5.1|
 |TS4|5.000000|5.000042e+01|0.000720|2|4.83|-1.4|5.0|
 
-(TS4 did not converged)
+(TS4: converged to a bound; see the note above)
 
 ## References
 [1] Werthamer, N. R., Helfand, E. & Hohenberg, P. C. Temperature and Purity Dependence of the Superconducting Critical Field, H c 2 . III. Electron Spin and Spin-Orbit Effects. Phys. Rev. 147, 295–302 (1966). https://doi.org/10.1103/PhysRev.147.295  
