@@ -12,7 +12,7 @@ Data points digitized from Figure S9 and Table S1 of Kim et al. (2025) [2]
 
 Note that `TS4` terminated on the *ftol* condition with its Maki parameter $\alpha$ pinned at the upper bound, because the R2 surface over the $(\alpha, \lambda_{SO})$ plane has a broad valley with only a small drop in R2.  
 
-***R2 score heatmap***
+***R2 score heatmap: The broad valley of $(\alpha, \lambda_{SO})$***
 * Colorscale minimum: 0.90. 
 * BS: parameter pair with best R2 score.
 
@@ -28,7 +28,8 @@ $$\ln\frac{1}{t}=\sum^\infty_{\nu=-\infty}\left(\frac{1}{|2\nu+1|}-\left[|2\nu+1
  where $\bar{h} = (4/\pi^2)[H_{c2}/(T_c\cdot|dH_{c2}(T)/dT|_{T_c})]$ and $t=T/T_c$.
     
 ### Polygamma closed form
-I used the digamma $\Psi$ and trigamma $\Psi^{(1)}$ functions for the summation.  
+Optionally, You can use `mpmath.nsum` with `methods="r+s+e"` (see usage).  
+By default, I used the digamma $\Psi$ and trigamma $\Psi^{(1)}$ functions for the summation.  
 
 $$\textrm{RHS} = \left(\frac{1}{2}+\frac{\lambda_{SO}}{4tq}\right)\Psi\left(\frac{1-q}{2}+\frac{\bar{h}+\lambda_{SO}/2}{2t}\right)+\left(\frac{1}{2}-\frac{\lambda_{SO}}{4tq}\right)\Psi\left(\frac{1+q}{2}+\frac{\bar{h}+\lambda_{SO}/2}{2t}\right)-\Psi(\frac{1}{2})$$
 
